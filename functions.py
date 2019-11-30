@@ -14,14 +14,17 @@ def ekleme(sayi):                                               #Erişim listesi
 
 def dosyaYaz(sayi):
     f = open("testfile.txt","a")            #Dosya ekleme modunda açıldı.
-    f.write(erisimListesi[sayi].arac_ureticisi + " ")
-    f.write(erisimListesi[sayi].arac_modeli + " ")
-    f.write(erisimListesi[sayi].renk + " ")
+    f.write(str(erisimListesi[sayi].arac_ureticisi) + " ")
+    f.write(str(erisimListesi[sayi].arac_modeli) + " ")
+    f.write(str(erisimListesi[sayi].renk) + " ")
     f.write(str(erisimListesi[sayi].motor_no))
-    f.write(" " + erisimListesi[sayi].plaka + " ")
+    f.write(" " + str(erisimListesi[sayi].plaka ) + " ")
     f.write(str(erisimListesi[sayi].sasi_no))
     f.write("\n")
     f.close()
+
+
+
 
 
 
