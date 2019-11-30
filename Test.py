@@ -1,12 +1,9 @@
-from Car import Car_T
+from Car import Car_T                   #unused import
 from functions import ekleme
 from functions import dosyaYaz
 from functions import erisimListesi
 
-
-
-
-
+mevcutEleman = [0]
 
 try:
     f = open("testfile.txt","x")
@@ -17,7 +14,8 @@ try:
             "1-Yeni Kayıt\n"
             "2-Arama\n"
             "3-Silme\n"
-            "4-Çıkış\n")
+            "4-Güncelleme\n"
+            "5-Çıkış")
 
         secim = int(input("Lütfen seçiminizi yapınız"))
 
@@ -62,17 +60,39 @@ try:
 
 
 
+
         elif secim == 4:
+
+            k = 0
+            l = 0
+            print("Güncellemeyi Seçtiniz İşleminiz Gerekleştiriliyor...\n")
+
+            aranan = int(input("Güncellemek istediğiniz kaydın şasi numarasını giriniz"))
+            while k < len(erisimListesi):
+                if erisimListesi[k].sasi_no == aranan:
+                    ekleme(k)
+                    f = open("testfile.txt", "w")
+                    f.close()
+                    while l < mevcutEleman[0]:
+                        dosyaYaz(l)
+                        l = l + 1
+                    break
+                k = k + 1
+
+            else:
+                print("Kayıt bulunamadı")
+        elif secim == 5:
             print("Programdan çıkılıyor...")
             exit(1)
+            
 
 except FileExistsError:
     liste=[0]
     f = open("testfile.txt", "r")
     bosmu = f.read(1)
 
-    if bosmu != 0:
-        f = open("testfile.txt","r")
+    if bosmu != "\n":
+        f = open("testfile.txt","r+")
         line = f.readline()
         iter = 0
         while line :
@@ -86,6 +106,8 @@ except FileExistsError:
             line = f.readline()
             iter = iter + 1
             liste = [iter]
+            mevcutEleman = [liste[0]]
+
 
 
     for i in range(liste[0],1000):
@@ -95,7 +117,8 @@ except FileExistsError:
             "1-Yeni Kayıt\n"
             "2-Arama\n"
             "3-Silme\n"
-            "4-Çıkış\n")
+            "4-Güncelleme\n"
+            "5-Çıkış\n")
 
         secim = int(input("Lütfen seçiminizi yapınız"))
 
@@ -103,6 +126,7 @@ except FileExistsError:
             j = 0
             print("Eklemeyi seçtiniz işleminiz gerçekleştiriliyor...\n")
             ekleme(i)
+            mevcutEleman[0] = mevcutEleman[0] + 1
 
             while (j) < (i):
                 if erisimListesi[j].sasi_no == erisimListesi[i].sasi_no:  # Burada primary key olarak saşi no kullanılıyor.
@@ -110,6 +134,7 @@ except FileExistsError:
                         "Zaten mevcut olan bir kayıt girmeye çalışıyorsunuz!\n")  # Çünkü şasi no her kayıt için unique bir değerdir.
                     print("Lütfen yeni bir kayıt giriniz\n")
                     ekleme(i)
+
                     break
 
                 j = j + 1
@@ -122,7 +147,7 @@ except FileExistsError:
             k = 0
 
             print("Aramayı Seçtiniz İşleminiz Gerekleştiriliyor...\n")
-            aranan = int(input("Aramak istediğiniz şasi numarasını giriniz"))
+            aranan = int(input("Aramak istediğiniz kaydın şasi numarasını giriniz"))
             while k < len(erisimListesi):
                 if erisimListesi[k].sasi_no == aranan:
                     print(erisimListesi[k].arac_modeli + " " + erisimListesi[k].arac_ureticisi + " " +  erisimListesi[k].plaka)
@@ -141,12 +166,30 @@ except FileExistsError:
             silinecek = int(input("Silmek istediğiniz kaydın index numarasını giriniz"))
 
 
-
         elif secim == 4:
+            k = 0
+            l = 0
+            print("Güncellemeyi Seçtiniz İşleminiz Gerekleştiriliyor...\n")
+            aranan = int(input("Güncellemek istediğiniz kaydın şasi numarasını giriniz"))
+            while k < len(erisimListesi):
+                if erisimListesi[k].sasi_no == aranan:
+                    ekleme(k)
+                    f=open("testfile.txt","w")
+                    f.close()
+                    while l < mevcutEleman[0]:
+                        dosyaYaz(l)
+                        l = l + 1
+                    break
+                k = k + 1
+            else:
+
+                print("Kayıt bulunamadı")
+
+
+
+        elif secim == 5:
             print("Programdan çıkılıyor...")
             exit(1)
-
-
 
 
 
