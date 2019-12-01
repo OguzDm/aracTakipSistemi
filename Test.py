@@ -268,6 +268,6 @@ except FileExistsError:                     #Eğer dosya mevcut ise except ile y
                 file.writelines(result)
 
             exit(1)
-        #os.execl(sys.executable, sys.executable, *sys.argv) #Program eğer  çıkış yapmadan biterse.
+os.execl(sys.executable, sys.executable, *sys.argv) #Program eğer  çıkış yapmadan biterse.
                                                             #Yeniden başlatılıyor.
 
