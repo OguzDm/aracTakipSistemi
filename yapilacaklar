@@ -1,8 +1,7 @@
-class içindeki listelere sınır değeri
-silme kodu oluştur
+✓class içindeki listelere sınır değeri
+✓silme kodu oluştur
 ✓fonksiyonlar için ayrı dosya oluştur
 DRY!!
-güncelleme kodu oluştur
-range değerini kullanıcıdan al
+✓güncelleme kodu oluştur
 ✓filea yazarken index atıyor onu sil
 yorum satırları ekle
