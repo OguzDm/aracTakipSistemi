@@ -110,7 +110,26 @@ try:                               #Eğer dosya yok ise oluşturuyoruz.Zaten ola
                 print("Kayıt bulunamadı")
         elif secim == 5:
             print("Programdan çıkılıyor...")
+
+            # Programdan cikiliyor
+            # '@' ile isaretli olan araclari sil
+            with open("testfile.txt", "r") as file:
+                lines = file.readlines()
+
+            # İsaretli olmayan satirlari bul ve result listesine ekle
+            result = []
+            for line in lines:
+                if not line.__contains__('@'):
+                    result.append(line)
+
+            # result listesini dosyaya yazdir
+            with open("testfile.txt", "w") as file:
+                file.writelines(result)
+
             exit(1)
+        #os.execl(sys.executable, sys.executable, *sys.argv)  # Program eğer  çıkış yapmadan biterse.
+        # Yeniden başlatılıyor.
+
             
 
 except FileExistsError:                     #Eğer dosya mevcut ise except ile yakaladık ve programımız buraya giriyor.
@@ -249,11 +268,6 @@ except FileExistsError:                     #Eğer dosya mevcut ise except ile y
                 file.writelines(result)
 
             exit(1)
-        os.execl(sys.executable, sys.executable, *sys.argv) #Program eğer  çıkış yapmadan biterse.
+        #os.execl(sys.executable, sys.executable, *sys.argv) #Program eğer  çıkış yapmadan biterse.
                                                             #Yeniden başlatılıyor.
-
-
-
-
-
 
